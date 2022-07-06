@@ -45,6 +45,11 @@ long S2(vector<long> &p2,long l, long r){
     return p2[r] - p2[l-1];
 }
 
+long getCost(vector<long> &p, vector<long> &p2, long i, long j){
+    long m = (i+j)/2;
+    return S2(p2,i,m) - S(p,i,m)+ S2(p2,m+1,j) - S(p,m+1,j);
+}
+
 long minPartition(Matrix &M,long n,vector<long> A,long k){
     //get Sum of prefix 
     vector<long> p = getPrefix(A);
@@ -53,31 +58,29 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
     for (long i = 1; i <= n; i++){
         long sum = 0;
         //calculo de sumatoria
-        for (long p = 1; p <= i; p++){
-            sum += min(p - 1, i - p) * A[p - 1];
-        }
-        M[i - 1][0] = sum;        
+        // for (long p = 1; p <= i; p++){
+        //     sum += min(p - 1, i - p) * A[p - 1];
+        // }
+        // M[i - 1][0] = sum;    
+        M[i - 1][0] = getCost(p,p2,1,i);    
     }
 
     for (long i = 1; i < n; i++){
         for (long j = 1; j < k;j++){
             M[i][j] = INT_MAX;
             for (long l = j; l <= i; l++){
-                long sum = 0;
-                long m = (j+n)/2;
-                long cost = M[l][j - 1] + (S2(p2,l,m) - S(p,l,m)+ S2(p2,m+1,i) - S(p,m+1,i));
+                long cost = M[l][j - 1] + getCost(p,p2,l,i);
                 M[i][j] = min(cost, M[i][j]); 
             }   
         }
     }
-
     return M[n-1][k-1]; 
 }
 
 int main(){
-    vector<long> A = {10,20,30,50,60,70,80,90};
+    vector<long> A = {10,20,30,40,50,60,70,80,90};
     long k  = 3;
-    long n = 8;
+    long n = 9;
     Matrix matrix (n,vector<long>(k));
 
     cout<<"resultao: "<<minPartition(matrix,n,A,k)<<endl;
