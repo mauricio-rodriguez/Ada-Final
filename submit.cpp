@@ -81,14 +81,17 @@ int main(){
     cin >> n;
     vector<dataType> A(n);
     for(dataType i = 0; i < n; i++) cin >> A[i];
-    k = n - 1;
-    Matrix matrix (n,vector<dataType>(k));
-    auto mn = minPartition(matrix,n,A,k);
-    for(dataType j = 1; j < n; j++){
-        cout << matrix[n-1][j-1] << " ";
+    if (n == 1) cout<<0;
+    else{
+        k = n - 1;
+        Matrix matrix (n,vector<dataType>(k));
+        dataType mn = minPartition(matrix,n,A,k);
+        for(dataType j = 1; j < n; j++){
+            cout << matrix[n-1][j-1] << " ";
+        }
+        cout << "\n";
+        //print(matrix);
     }
-    cout << "\n";
-    //print(matrix);
     return 0;
 
 }
