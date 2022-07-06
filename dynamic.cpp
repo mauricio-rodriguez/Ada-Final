@@ -57,11 +57,7 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
 
     for (long i = 1; i <= n; i++){
         long sum = 0;
-        //calculo de sumatoria
-        // for (long p = 1; p <= i; p++){
-        //     sum += min(p - 1, i - p) * A[p - 1];
-        // }
-        // M[i - 1][0] = sum;    
+        //calculo de sumatoria 
         M[i - 1][0] = getCost(p,p2,1,i);    
     }
 
