@@ -54,11 +54,12 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
     //get Sum of prefix 
     vector<long> p = getPrefix(A);
     vector<long> p2 = getSecondaryPrefix(A);
+    Matrix D (n,vector<long>(k));
 
     for (long i = 1; i <= n; i++){
         long sum = 0;
         //calculo de sumatoria 
-        M[i - 1][0] = getCost(p,p2,1,i);    
+        M[i - 1][0] = getCost(p,p2,1,i - 1);    
     }
 
     for (long i = 1; i < n; i++){
@@ -74,12 +75,26 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
 }
 
 int main(){
-    vector<long> A = {10,20,30,40,50,60,70,80,90};
-    long k  = 3;
-    long n = 9;
+    dataType n,k;
+    cin >> n >> k;
+    vector<dataType> vec;
+    dataType temp;
+    for (dataType i = 0; i < n; i++){
+        cin>>temp;
+        vec.push_back(temp);
+    }
     Matrix matrix (n,vector<long>(k));
+    cout<<minPartition(matrix,n,vec,k);
 
-    cout<<"resultao: "<<minPartition(matrix,n,A,k)<<endl;
-    print(matrix);
-    return 0;
 }
+
+// int main(){
+//     vector<long> A = {10,20,30,40,50,60,70,80,90};
+//     long k  = 1;
+//     long n = 9;
+//     Matrix matrix (n,vector<long>(k));
+
+//     cout<<"resultao: "<<minPartition(matrix,n,A,k)<<endl;
+//     print(matrix);
+//     return 0;
+// }
