@@ -66,7 +66,7 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
         for (long j = 1; j < k;j++){
             M[i][j] = INT_MAX;
             for (long l = j; l <= i; l++){
-                long cost = M[l][j - 1] + getCost(p,p2,l,i);
+                long cost = M[l][j - 1] + getCost(p,p2,l, i  -1);
                 M[i][j] = min(cost, M[i][j]); 
             }   
         }
@@ -74,27 +74,27 @@ long minPartition(Matrix &M,long n,vector<long> A,long k){
     return M[n-1][k-1]; 
 }
 
-int main(){
-    dataType n,k;
-    cin >> n >> k;
-    vector<dataType> vec;
-    dataType temp;
-    for (dataType i = 0; i < n; i++){
-        cin>>temp;
-        vec.push_back(temp);
-    }
-    Matrix matrix (n,vector<long>(k));
-    cout<<minPartition(matrix,n,vec,k);
-
-}
-
 // int main(){
-//     vector<long> A = {10,20,30,40,50,60,70,80,90};
-//     long k  = 1;
-//     long n = 9;
+//     dataType n,k;
+//     cin >> n >> k;
+//     vector<dataType> vec;
+//     dataType temp;
+//     for (dataType i = 0; i < n; i++){
+//         cin>>temp;
+//         vec.push_back(temp);
+//     }
 //     Matrix matrix (n,vector<long>(k));
+//     cout<<minPartition(matrix,n,vec,k);
 
-//     cout<<"resultao: "<<minPartition(matrix,n,A,k)<<endl;
-//     print(matrix);
-//     return 0;
 // }
+
+int main(){
+    vector<long> A = {10,20,30,40,50,60,70,80,90};
+    long k  = 3;
+    long n = 9;
+    Matrix matrix (n,vector<long>(k));
+
+    cout<<"resultao: "<<minPartition(matrix,n,A,k)<<endl;
+    print(matrix);
+    return 0;
+}
