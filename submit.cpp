@@ -97,9 +97,9 @@ int main(){
             cout << matrix[n-1][j-1] << " ";
             myfile << matrix[n-1][j-1] << " ";
         }
-        
-        cout << "\n";
-        myfile << "\n";
+
+        // cout << "\n";
+        // myfile << "\n";
         //print(matrix);
     }
     return 0;
