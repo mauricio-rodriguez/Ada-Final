@@ -78,15 +78,15 @@ long minPartition(Matrix &M,dataType n,vector<dataType> A,dataType k){
 int main(){
     dataType k;
     dataType n;
-    ofstream myfile;
-    myfile.open ("output.txt");
+    //ofstream myfile;
+    //myfile.open ("output.txt");
     cin >> n;
     vector<dataType> A(n);
     for(dataType i = 0; i < n; i++) cin >> A[i];
 
     if (n == 1) {
         cout<<0<<" ";
-        myfile<<0<<" ";
+        //myfile<<0<<" ";
     }
     else{
         k = n - 1;
@@ -95,12 +95,14 @@ int main(){
 
         for(dataType j = 1; j < n; j++){
             cout << matrix[n-1][j-1] << " ";
-            myfile << matrix[n-1][j-1] << " ";
+            //myfile << matrix[n-1][j-1] << " ";
         }
+
 
         // cout << "\n";
         // myfile << "\n";
         //print(matrix);
+        //comment6
     }
     return 0;
 
